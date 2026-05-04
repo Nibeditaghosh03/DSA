@@ -7,13 +7,13 @@ public:
 
 
        while (right < n) {
-           if (charSet.find(s[right]) == charSet.end()) { // Unique character
+           if (charSet.find(s[right]) == charSet.end()) { 
                charSet.insert(s[right]);
                maxLength = max(maxLength, right - left + 1);
-               right++;  // Expand the window
-           } else { // Duplicate found
+               right++;  
+           } else { 
                charSet.erase(s[left]);
-               left++;  // Shrink the window
+               left++;  
            }
        }
        return maxLength;
