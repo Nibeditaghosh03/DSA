@@ -2,34 +2,34 @@ class Solution {
 public:
     string longestPalindrome(string s) {
         int n = s.length();
-        string ans = "";
+        int maxLength = 0;
+        int startIndex = 0;
 
-        for (int i = 0; i < n; i++) {
-            for (int j = i; j < n; j++) {
+        for(int i = 0; i < n; i++){
+            int left = i;
+            int right = i;
 
-                int left = i;
-                int right = j;
-                bool isPalindrome = true;
-
-                while (left < right) {
-                    if (s[left] != s[right]) {
-                        isPalindrome = false;
-                        break;
-                    }
-                    left++;
-                    right--;
+            while(left >= 0 && right < n && s[left] == s[right]){
+                int currLength = right - left + 1;
+                if(currLength > maxLength){
+                    maxLength = currLength;
+                    startIndex = left;
                 }
-
-                if (isPalindrome) {
-                    int len = j - i + 1;
-
-                    if (len > ans.length()) {
-                        ans = s.substr(i, len);
-                    }
+                left--;
+                right++;
+            }
+            left = i; 
+            right = i+1;
+            while(left >= 0 && right < n && s[left] == s[right]){
+               int currLength = right - left + 1;
+                if(currLength > maxLength){
+                    maxLength = currLength;
+                    startIndex = left;
                 }
+                left--;
+                right++;
             }
         }
-
-        return ans;
+        return s.substr(startIndex,maxLength);
     }
 };
