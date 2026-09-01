@@ -12,7 +12,7 @@ class Solution {
 public:
     void reorderList(ListNode* head) {
 
-        // Step 1: Find the middle
+       
         ListNode* slow = head;
         ListNode* fast = head->next;
 
@@ -21,7 +21,7 @@ public:
             fast = fast->next->next;
         }
 
-        // Step 2: Split and reverse the second half
+        
         ListNode* curr = slow->next;
         slow->next = nullptr;
 
@@ -35,7 +35,7 @@ public:
             curr = next;
         }
 
-        // Step 3: Merge the two halves
+        
         ListNode* first = head;
 
         while (prev != nullptr) {
