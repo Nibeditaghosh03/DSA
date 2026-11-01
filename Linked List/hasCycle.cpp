@@ -45,4 +45,4 @@ int main(){
         cout << "No cycle deteted" << endl;
     }
     return 0;
-};
+};  
