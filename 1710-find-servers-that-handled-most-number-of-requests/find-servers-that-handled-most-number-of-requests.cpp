@@ -9,7 +9,7 @@ public:
             available.insert(i);
         }
 
-        // {endTime, serverNumber}
+        
         priority_queue<
             pair<int, int>,
             vector<pair<int, int>>,
@@ -22,7 +22,7 @@ public:
 
             int currTime = arrival[i];
 
-            // Release servers that have finished processing
+            
             while (!busy.empty() && busy.top().first <= currTime) {
 
                 int server = busy.top().second;
@@ -32,38 +32,38 @@ public:
                 available.insert(server);
             }
 
-            // If no server is available, drop the request
+           
             if (available.empty()) {
                 continue;
             }
 
-            // Preferred server
+            
             int preferred = i % k;
 
-            // Find first available server >= preferred
+            
             auto it = available.lower_bound(preferred);
 
-            // Circular allocation
+            
             if (it == available.end()) {
                 it = available.begin();
             }
 
             int server = *it;
 
-            // Remove server from available set
+            
             available.erase(it);
 
-            // Update request count
+            
             count[server]++;
 
-            // Mark server as busy
+            
             busy.push({
                 currTime + load[i],
                 server
             });
         }
 
-        // Find maximum requests handled
+        
         int maxi = *max_element(count.begin(), count.end());
 
         vector<int> ans;
